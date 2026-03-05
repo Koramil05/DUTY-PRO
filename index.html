@@ -8,8 +8,10 @@
 <!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
 <!-- Favicon / Icons untuk PWA -->
-<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcklEQVRYhe2VPU7DMBSAP0uRUAcWJsaqTp2Q2IHEKeAA3QOxMnKFHqHbuQ4DYmJA6oHYmDoWCVSqVELtEBQoNrbz4/6oZcl2/N7zfhzbAYqiKIqiKIqiKIqi/I+QJElomuZ2u93WNE1f13VtGAZ1XWfLsn6u1+uHMAyf/hpA13U2TZM9z+N5nrMsC1mWwfM8lmUZ+/3+TZZlT9M0/SyA67ps27Ysy/JBENAwDJEkCUmShCRJYFkWlmXhOE4kSfJpmuZHALquY8uy2DRNNk2TDcNgy7Jk0zR5nud3Xdc9TdP8KIBt22yaJtu2zcMw0DAM9DyPruuiaZqYpome58F1XfQ8DzzPw3EcNk2Tbdtm13XZ8zxe1/WtYRi3uq5fH+fJsixc1+UkScDzPBzH4TAM4fs+AIBhGMAwDHzfB9d14TgOeJ4Hx3FwXZc9z+O+77Ft22wYxq1hGJdHRzAMg+M4hq7rME0TTNOE4zjgeR7wPA9N08A0TUiSBL7vB9M04bouT5KEoijKX+YTqh0nLjfFSeoAAAAASUVORK5CYII=">
-<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcklEQVRYhe2VPU7DMBSAP0uRUAcWJsaqTp2Q2IHEKeAA3QOxMnKFHqHbuQ4DYmJA6oHYmDoWCVSqVELtEBQoNrbz4/6oZcl2/N7zfhzbAYqiKIqiKIqiKIqi/I+QJElomuZ2u93WNE1f13VtGAZ1XWfLsn6u1+uHMAyf/hpA13U2TZM9z+N5nrMsC1mWwfM8lmUZ+/3+TZZlT9M0/SyA67ps27Ysy/JBENAwDJEkCUmShCRJYFkWlmXhOE4kSfJpmuZHALquY8uy2DRNNk2TDcNgy7Jk0zR5nud3Xdc9TdP8KIBt22yaJtu2zcMw0DAM9DyPruuiaZqYpome58F1XfQ8DzzPw3EcNk2Tbdtm13XZ8zxe1/WtYRi3uq5fH+fJsixc1+UkScDzPBzH4TAM4fs+AIBhGMAwDHzfB9d14TgOeJ4Hx3FwXZc9z+O+77Ft22wYxq1hGJdHRzAMg+M4hq7rME0TTNOE4zjgeR7wPA9N08A0TUiSBL7vB9M04bouT5KEoijKX+YTqh0nLjfFSeoAAAAASUVORK5CYII=">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <!-- Font Awesome & html2canvas -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -355,16 +357,17 @@ audio{
   <source src="https://notificationsounds.com/storage/sounds/file-sounds-1157-ting-tong.mp3" type="audio/mpeg">
 </audio>
 
-<!-- SERVICE WORKER UNTUK PWA OFFLINE -->
+<!-- PWA Registration -->
 <script>
-  // Daftarkan Service Worker jika browser mendukung
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-        console.log('Service Worker terdaftar dengan scope:', registration.scope);
-      }).catch(function(error) {
-        console.log('Service Worker gagal didaftarkan:', error);
-      });
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(registration => {
+          console.log('✅ PWA siap diinstal:', registration.scope);
+        })
+        .catch(error => {
+          console.log('❌ PWA gagal:', error);
+        });
     });
   }
 </script>
@@ -640,98 +643,6 @@ audio{
   // simpan global agar bisa dipanggil dari html
   window.renderCalendar = renderCalendar;
 })();
-</script>
-
-<!-- MANIFEST.JSON inline untuk PWA (tanpa file eksternal) -->
-<script type="application/json" id="manifest-json">
-{
-  "name": "Duty Schedule Pro",
-  "short_name": "DutyPro",
-  "description": "Aplikasi jadwal jaga pos dengan mode offline",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#121212",
-  "theme_color": "#121212",
-  "icons": [
-    {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcklEQVRYhe2VPU7DMBSAP0uRUAcWJsaqTp2Q2IHEKeAA3QOxMnKFHqHbuQ4DYmJA6oHYmDoWCVSqVELtEBQoNrbz4/6oZcl2/N7zfhzbAYqiKIqiKIqiKIqi/I+QJElomuZ2u93WNE1f13VtGAZ1XWfLsn6u1+uHMAyf/hpA13U2TZM9z+N5nrMsC1mWwfM8lmUZ+/3+TZZlT9M0/SyA67ps27Ysy/JBENAwDJEkCUmShCRJYFkWlmXhOE4kSfJpmuZHALquY8uy2DRNNk2TDcNgy7Jk0zR5nud3Xdc9TdP8KIBt22yaJtu2zcMw0DAM9DyPruuiaZqYpome58F1XfQ8DzzPw3EcNk2Tbdtm13XZ8zxe1/WtYRi3uq5fH+fJsixc1+UkScDzPBzH4TAM4fs+AIBhGMAwDHzfB9d14TgOeJ4Hx3FwXZc9z+O+77Ft22wYxq1hGJdHRzAMg+M4hq7rME0TTNOE4zjgeR7wPA9N08A0TUiSBL7vB9M04bouT5KEoijKX+YTqh0nLjfFSeoAAAAASUVORK5CYII=",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcklEQVRYhe2VPU7DMBSAP0uRUAcWJsaqTp2Q2IHEKeAA3QOxMnKFHqHbuQ4DYmJA6oHYmDoWCVSqVELtEBQoNrbz4/6oZcl2/N7zfhzbAYqiKIqiKIqiKIqi/I+QJElomuZ2u93WNE1f13VtGAZ1XWfLsn6u1+uHMAyf/hpA13U2TZM9z+N5nrMsC1mWwfM8lmUZ+/3+TZZlT9M0/SyA67ps27Ysy/JBENAwDJEkCUmShCRJYFkWlmXhOE4kSfJpmuZHALquY8uy2DRNNk2TDcNgy7Jk0zR5nud3Xdc9TdP8KIBt22yaJtu2zcMw0DAM9DyPruuiaZqYpome58F1XfQ8DzzPw3EcNk2Tbdtm13XZ8zxe1/WtYRi3uq5fH+fJsixc1+UkScDzPBzH4TAM4fs+AIBhGMAwDHzfB9d14TgOeJ4Hx3FwXZc9z+O+77Ft22wYxq1hGJdHRzAMg+M4hq7rME0TTNOE4zjgeR7wPA9N08A0TUiSBL7vB9M04bouT5KEoijKX+YTqh0nLjfFSeoAAAAASUVORK5CYII=",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcklEQVRYhe2VPU7DMBSAP0uRUAcWJsaqTp2Q2IHEKeAA3QOxMnKFHqHbuQ4DYmJA6oHYmDoWCVSqVELtEBQoNrbz4/6oZcl2/N7zfhzbAYqiKIqiKIqiKIqi/I+QJElomuZ2u93WNE1f13VtGAZ1XWfLsn6u1+uHMAyf/hpA13U2TZM9z+N5nrMsC1mWwfM8lmUZ+/3+TZZlT9M0/SyA67ps27Ysy/JBENAwDJEkCUmShCRJYFkWlmXhOE4kSfJpmuZHALquY8uy2DRNNk2TDcNgy7Jk0zR5nud3Xdc9TdP8KIBt22yaJtu2zcMw0DAM9DyPruuiaZqYpome58F1XfQ8DzzPw3EcNk2Tbdtm13XZ8zxe1/WtYRi3uq5fH+fJsixc1+UkScDzPBzH4TAM4fs+AIBhGMAwDHzfB9d14TgOeJ4Hx3FwXZc9z+O+77Ft22wYxq1hGJdHRzAMg+M4hq7rME0TTNOE4zjgeR7wPA9N08A0TUiSBL7vB9M04bouT5KEoijKX+YTqh0nLjfFSeoAAAAASUVORK5CYII=",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
-</script>
-
-<script>
-  // Buat manifest.json secara dinamis dari inline JSON
-  const manifestJSON = JSON.parse(document.getElementById('manifest-json').textContent);
-  const manifestBlob = new Blob([JSON.stringify(manifestJSON)], {type: 'application/json'});
-  const manifestURL = URL.createObjectURL(manifestBlob);
-  
-  // Update link manifest
-  const manifestLink = document.querySelector('link[rel="manifest"]');
-  if (manifestLink) {
-    manifestLink.href = manifestURL;
-  }
-</script>
-
-<script>
-  // Service Worker code inline (akan didaftarkan sebagai file terpisah)
-  // Tapi kita buat service-worker.js secara dinamis
-  if ('serviceWorker' in navigator) {
-    const swCode = `
-      const CACHE_NAME = 'duty-schedule-v1';
-      const urlsToCache = [
-        '.',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
-      ];
-
-      self.addEventListener('install', event => {
-        event.waitUntil(
-          caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(urlsToCache))
-        );
-      });
-
-      self.addEventListener('fetch', event => {
-        event.respondWith(
-          caches.match(event.request)
-            .then(response => response || fetch(event.request))
-        );
-      });
-
-      self.addEventListener('activate', event => {
-        event.waitUntil(
-          caches.keys().then(cacheNames => {
-            return Promise.all(
-              cacheNames.filter(name => name !== CACHE_NAME)
-                .map(name => caches.delete(name))
-            );
-          })
-        );
-      });
-    `;
-    
-    const swBlob = new Blob([swCode], {type: 'application/javascript'});
-    const swURL = URL.createObjectURL(swBlob);
-    
-    navigator.serviceWorker.register(swURL).then(reg => {
-      console.log('Service Worker registered with scope:', reg.scope);
-    }).catch(err => {
-      console.log('Service Worker registration failed:', err);
-    });
-  }
 </script>
 </body>
 </html>
