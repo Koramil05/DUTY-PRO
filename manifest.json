@@ -1,0 +1,28 @@
+{
+  "name": "SLIDE SHOW - Premium Slideshow",
+  "short_name": "SLIDE SHOW",
+  "description": "Aplikasi slideshow premium dengan animasi PowerPoint 2007, dukungan Google Drive, HFS, dan multi-media",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "background_color": "#0A0A0A",
+  "theme_color": "#C5A059",
+  "orientation": "landscape",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [],
+  "categories": ["entertainment", "productivity"]
+}
