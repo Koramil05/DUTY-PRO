@@ -532,10 +532,10 @@ audio{
     const teks = 
       `🪖 *DUTY SCHEDULE*\n` +
       `━━━━━━━━━━━━━━━━\n` +
-      `📅 ${formatTanggalLengkap(dateStr)}\n\n` +
-      `🔵 *BUNGKULAN POST*\n` +
+      `🕘 ${formatTanggalLengkap(dateStr)}\n\n` +
+      `✪*BUNGKULAN POST*♗\n` +
       (data.bungkulan?.length ? data.bungkulan.map((n, i) => `${i+1}. 🪖 ${n}`).join("\n") : "   -") +
-      `\n\n🟢 *KOMODO WAREHOUSE*\n` +
+      `\n\n✪*KOMODO WAREHOUSE*♞\n` +
       (data.komodo?.length ? data.komodo.map((n, i) => `${i+1}. 🪖 ${n}`).join("\n") : "   -") +
       `\n\n━━━━━━━━━━━━━━━━\n#DutyToday`;
 
